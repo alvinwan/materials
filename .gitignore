@@ -1,7 +1,7 @@
 rendered
 test
 .idea
-utils/config.json
+config.json
 *-img*.tex
 src/dis/*.tex
 src/hw/*.tex
@@ -10,6 +10,7 @@ src/dis/*.pdf
 src/hw/*.pdf
 src/slides/*.pdf
 src/exans/*.pdf
+node_modules/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

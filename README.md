@@ -40,16 +40,16 @@ If you are only using this repository to review or create documents from the com
 
 you will need to setup a virtual environment as detailed in the following steps.
 
-Setup your virtual environment. The following will create a new environment called `cs70`.
+Setup your virtual environment. The following will create a new environment called `course`.
 
 ```
-conda create -n cs70 python=3.5
+conda create -n course python=3.5
 ```
 
 Activate your virtual environment, and install all dependencies from `requirements.txt`.
 
 ```
-source activate cs70
+source activate course
 pip install -r requirements.txt
 ```
 
@@ -65,6 +65,18 @@ If you would like to generate image files to post on Piazza, you will need to in
 brew install imagemagick
 ```
 
+If you would like to post to Piazza programmatically, you will need to install Node and its package manager `npm`.
+
+```
+brew install npm nodejs
+```
+
+Then, install the Node packages required for the Piazza script.
+
+```
+npm install package.json
+```
+
 Installation complete. See "How to Use" to get started.
 
 # How to Use
@@ -75,16 +87,16 @@ All commands are available via `make`. If for some reason, `make` is not install
 
 We now support a workflow which produces the `.tex` files from templates. The templates are located at `src/[category]/template.tex.erb` and `src/[category]/template-sol.tex.erb`. In order to make the actual documents, the only documents you need to edit are: a JSON file containing the data for a document, and the `.tex` files for the problems themselves.
 
-Here, we will create a new document of the form `[category][num]`. This may be a discussion or homework; for simplicity, let us consider a document `dis03b`.
+Here, we will create a new document of the form `[category][num]`. This may be a discussion or homework; for simplicity, let us consider a document `dis01a`.
 
-First, navigate to `src/dis/`, and make a file called `dis03b.json`.
+First, navigate to `src/dis/`, and make a file called `dis01a.json`.
 
 ```
 cd src/dis
-touch dis03b.json
+touch dis01a.json
 ```
 
-Open up `dis03b.json` using a text editor of your choice. If you are unfamiliar with JSON format, don't worry: the basics are simple. Here is an example:
+Open up `dis01a.json` using a text editor of your choice. If you are unfamiliar with JSON format, don't worry: the basics are simple. Here is an example:
 
 ```
 {
@@ -140,21 +152,13 @@ The following are valid categories:
 For example, to make Discussion 3b, use
 
 ```
-make dis n=03b
+make dis n=01a
 ```
-
-> **Note**: We have not yet run sanity checks against all of the LaTeX files. Some of them may contain random `\fi`s, misplaced curly braces, undefined control sequences, or otherwise incorrect syntax. Common mishaps include:
->
-> - misplaced: `\fi`s, without an `\ifsolution` (remove both)
-> - undefined: `\qitem`, which should be renamed to `\Part`
-> - extra: `\end{enumerate}` or `\end{document}`
->
-> Additionally, some files may contain multiple `\Question`s. This occurs when two problems are given the same title, to let us resolve duplicates easier. If they are the same, feel free to delete one copy. If they are different, feel free to split them up into multiple files.
 
 This will create two PDF files:
 
-- `rendered/dis03/dis03b.pdf`
-- `rendered/dis03/dis03b-sol.pdf`
+- `rendered/dis01a/dis01a.pdf`
+- `rendered/dis01a/dis01a-sol.pdf`
 
 What's going on when you run the command?
 - First, the Ruby script `generate.rb` is run to generate the `.tex` files from the JSON data file, along with the embedded Ruby template files (files ending with `.tex.erb`). (After rendering, you should find the generated `.tex` files in `src/[category]`.
@@ -163,3 +167,15 @@ What's going on when you run the command?
 ## Generating Image Files
 
 After running `make hw n=[number]` as above, the command `make img n=[number]` will generate PNG image files, also in the `rendered` directory. To use this feature, you must have ImageMagick installed (see the requirements above).
+
+## Posting to Piazza
+
+Before using this utility, make sure to create `config.json`. We have provided a sample for you to fill in. You may duplicate the sample to get started.
+
+```
+cp sample_config.json config.json
+```
+
+We have provided a Piazza Course id, created for anyone to test on. You must fill in `username` and `password` with valid Piazza credentials.
+
+After generating images per instructions in the previous section and setting up your configuration file, the command `make piazza n=[number]` will post all images on Piazza.
