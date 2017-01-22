@@ -1,0 +1,17 @@
+\documentclass[11pt]{article}
+\usepackage{header}
+
+\def\title{<%= title %>}
+\solfalse
+\nosoltrue
+
+\begin{document}
+\maketitle
+\fontsize{12}{15}\selectfont
+
+<% for question in questions %>
+\input{<%= question %>}
+
+<% end %>
+
+\end{document}

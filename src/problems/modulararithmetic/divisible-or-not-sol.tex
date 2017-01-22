@@ -1,0 +1,71 @@
+\begin{solution}
+
+\begin{enumerate}
+\item Using modular arithmetic, the proof is simple. We can prove both directions
+of the implication at once. Take $n$, which has $k$ digits.
+
+$$n = n_0 + 10 n_1 + 10^2 n_2 + 10^3 n_3 \dots 10^k n_k = \sum_{i=1}^k 10^i n_i$$
+
+We can take $n (\text{ mod } 4)$ and see that all terms $n_2$ up to $n_k$ drop
+out since $10^2, 10^3 \dots 10^k$ are all divisible by 4.
+
+$$n = n_0 + 10 n_1 (\text{ mod } 4)$$
+
+$n_0 + 10n_1$ is 0 in mod 4 if and only if $n$ is 0 in mod 4, proving that
+the number formed by the last digits is divisible by 4 if and only if
+the entire number $n$ is divisible by 4.
+
+Let us now consider the alternative solution, where we do not use modular
+arithmetic.
+
+\textbf{Alternative Solution}
+
+Let $P$ be "the last two digits of $n$ are divisible by 4", and $Q$ be
+"$n$ is divisible by 4."
+
+\textbf{Forward Direction: $P \implies Q$}
+
+Let us re-express any number $n$ as a function of its digits. Let $n_i$
+be the $i$th digit of the number $n$. We know that the number will thus have
+the following value, for some $k$-digit number.
+
+$$n = n_0 + 10 n_1 + 10^2 n_2 + 10^3 n_3 \dots 10^k n_k$$
+
+We know that since $10^2$ is divisible by 4, $10^2 n_2$ is divisible by 4 for all
+possible values of $n_2$. This is true for all $n_3 \dots n_k$. Since the number
+formed by the first two digits $n_0 + 10n_1$ is divisible by 4, $n$ is
+divisible by 4.
+
+\textbf{Reverse Direction: $Q \implies P$}
+
+If $n$ is divisible by 4, we can re-express $n = 2k$ for some integer $k$. We
+wish to prove that this implies the first two digits are divisible by 4. We see
+
+$$n_0 + 10 n_1 + 10^2 n_2 + 10^3 n_3 \dots 10^k n_k = 4k$$
+
+Re-arrange, and we have
+
+$$\frac{n_0 + 10 n_1}{4} + 25 n_2 + 250 n_3 \dots 25 * 10^{k-1} n_k = k$$
+
+Since $k$ is an integer, and all values after the first two terms are integers,
+we have that $\frac{n_0 + 10 n_1}{4}$ is necessarily an integer. This
+implies that 4 divides $n_0 + 10 n_1$.
+
+\item We will again use modular arithmetic to prove both directions of the
+implication at once. We will show that the sum of the digits is divisible by 3
+is equal to condition that the sum of all the digits is divisible by 3.
+
+Consider the following expression for $n$.
+
+$$n = \sum_{i=1}^k 10^i n_i (\text{ mod } 3)$$
+
+Note that in mod 3, $10 = 1$, so in mod 3, this is equivalent to
+
+$$n = \sum_{i=1}^k n_i (\text{ mod } 3)$$
+
+As it turns out, the latter expression is exactly the sum of all the digits
+in $n$. As a result, $n$ is 0 in mod 3 if and only if the sum of all the
+digits is 0 in mod 3.
+
+\end{enumerate}
+\end{solution}

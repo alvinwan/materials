@@ -1,0 +1,31 @@
+\documentclass[11pt]{article}
+\usepackage{header}
+
+\def\title{<%= title %>}
+\soltrue
+\nosolfalse
+
+\begin{document}
+\maketitle
+\fontsize{12}{15}\selectfont
+
+\section{Getting Started}
+Before you start your homework, write down your team. Who else did you work with on this homework? List names and email addresses. In case of homework party, you can also just describe the group. How did you work on this homework?
+
+Please copy the following statement and sign next to it:
+
+\textit{I certify that all solutions are entirely in my words and that I have not looked at another student's solutions. I have credited all external sources in this write up.}
+
+\vspace{15pt}
+{\color{blue} I certify that all solutions are entirely in my words and that I have not looked at another student's solutions. I have credited all external sources in this write up. (Signature here)}
+
+<% for question in questions %>
+\input{<%= question %>}
+
+<% if !(question.include? "text") %>
+\input{<%= question + '-sol'  %>}
+<% end %>
+
+<% end %>
+
+\end{document}
