@@ -25,7 +25,11 @@ render:
 	mkdir -p rendered/${cat}${n}
 	pdflatex -jobname=rendered/${cat}${n}/${cat}${n} src/${cat}/${cat}${n}.tex
 	pdflatex -jobname=rendered/${cat}${n}/${cat}${n}-sol src/${cat}/${cat}${n}-sol.tex
+	rm {rendered/**/*.aux,rendered/**/*.log,rendered/**/*-img*.pdf}
 
 # Usage: make piazza n=<str>
 piazza:
     node utils/piazza.js ./config.json n=${n}
+
+clean:
+	rm {src/**/hw*-sol.tex,src/**/hw*-raw.tex,src/**/hw*-img*.tex}
