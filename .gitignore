@@ -5,6 +5,8 @@ config.json
 *-img*.tex
 src/dis/*.tex
 src/hw/*.tex
+!src/hw/template*.tex
+!src/hw/*.base.tex
 src/practice/*.tex
 src/dis/*.pdf
 src/hw/*.pdf

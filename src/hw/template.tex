@@ -1,7 +1,7 @@
 \documentclass[11pt]{article}
 \usepackage{header}
 
-\def\title{<%= title %>}
+\def\title{<<title>>}
 
 \begin{document}
 \maketitle
@@ -17,9 +17,6 @@ Please copy the following statement and sign next to it:
 \vspace{15pt}
 \framebox(465, 75){}
 
-<% for question in questions %>
-\input{<%= question %>}
-
-<% end %>
+<<base>>
 
 \end{document}

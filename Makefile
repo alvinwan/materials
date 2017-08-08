@@ -21,7 +21,7 @@ img:
 
 # Usage: make render cat=<str> n=<str>
 render:
-	ruby utils/generate.rb ${cat} ${n}
+	python utils/generate.py ${cat} ${n}
 	mkdir -p rendered/${cat}${n}
 	pdflatex -jobname=rendered/${cat}${n}/${cat}${n} src/${cat}/${cat}${n}.tex
 	pdflatex -jobname=rendered/${cat}${n}/${cat}${n}-sol src/${cat}/${cat}${n}-sol.tex

@@ -1,7 +1,7 @@
 \documentclass[11pt]{article}
 \usepackage{header}
 
-\def\title{<%= title %>}
+\def\title{HW1}
 \soltrue
 \nosolfalse
 
@@ -19,13 +19,7 @@ Please copy the following statement and sign next to it:
 \vspace{15pt}
 {\color{blue} I certify that all solutions are entirely in my words and that I have not looked at another student's solutions. I have credited all external sources in this write up. (Signature here)}
 
-<% for question in questions %>
-\input{<%= question %>}
-
-<% if !(question.include? "text") %>
-\input{<%= question + '-sol'  %>}
-<% end %>
-
-<% end %>
+\input{modulararithmetic/text/introduction.tex}
+\input{modulararithmetic/divisible-or-not.tex}
 
 \end{document}
