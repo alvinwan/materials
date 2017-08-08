@@ -4,6 +4,8 @@ test
 config.json
 *-img*.tex
 src/dis/*.tex
+!src/dis/template*.tex
+!src/dis/*.base.tex
 src/hw/*.tex
 !src/hw/template*.tex
 !src/hw/*.base.tex

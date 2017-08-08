@@ -6,10 +6,10 @@ import re
 arguments = sys.argv
 
 category = arguments[1]
-number = int(arguments[2])
+number = arguments[2]
 base_dir = 'src/%s' % category
 
-title = '%s%02d' % (category, number)
+title = '%s%s' % (category, number)
 
 # Grab base tex
 with open(os.path.join(base_dir, '%s.base.tex' % title)) as f:
@@ -48,9 +48,11 @@ for data in generated_files:
         f.write(latex)
 
 # Generate images
-with open(os.path.join(base_dir, 'template-img.tex')) as f:
-    template = f.read()
+template_img_path = os.path.join(base_dir, 'template-img.tex')
+if os.path.exists(template_img_path):
+    with open(template_img_path) as f:
+        template = f.read()
 
-for i, filename in enumerate(filenames):
-    with open(os.path.join(base_dir, '%s-img-%d.tex' % (title, i)), 'w') as f:
-        f.write(template.replace('<<question>>', filename))
+    for i, filename in enumerate(filenames):
+        with open(os.path.join(base_dir, '%s-img-%d.tex' % (title, i)), 'w') as f:
+            f.write(template.replace('<<question>>', filename))
