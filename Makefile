@@ -21,8 +21,11 @@ img:
 
 # Usage: make render cat=<str> n=<str>
 render:
+	mkdir -p src/${cat}/${cat}${n}_data
 	python utils/generate.py ${cat} ${n}
 	mkdir -p rendered/${cat}${n}
+	rm -rf rendered/${cat}${n}/data
+	mv src/${cat}/${cat}${n}_data/ rendered/${cat}${n}/data
 	pdflatex -jobname=rendered/${cat}${n}/${cat}${n} src/${cat}/${cat}${n}.tex
 	pdflatex -jobname=rendered/${cat}${n}/${cat}${n}-sol src/${cat}/${cat}${n}-sol.tex
 	rm -f {rendered/**/*.aux,rendered/**/*.log,rendered/**/*-img*.pdf}
