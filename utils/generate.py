@@ -68,6 +68,8 @@ out_dir = os.path.join(base_dir, '%s_data' % title)
 for input_ in base_latex.splitlines():
     if not input_:
         continue
+    if not input_.strip().startswith('\\input'):  # skip non-inputs
+        continue
     filepath = 'src/problems/%s' % input_.replace('\input{', '')[:-1]
     filenames.append(filepath)
     tex = open(filepath).read()
@@ -75,6 +77,7 @@ for input_ in base_latex.splitlines():
     base_texs.append(tex)
     pieces = re.split(regex, tex)
     raw_tex = ''.join(pieces[::2])
+    raw_tex = re.sub('%.*?\n', '', raw_tex)  # ignore comments
     questions.append(raw_tex)
 
 with open(os.path.join(base_dir, '%s-raw.tex' % title), 'w') as f:
