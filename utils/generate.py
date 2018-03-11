@@ -36,7 +36,7 @@ def hook_process_tex_code(filepath, tex, out_dir):
 
     # Extract solutions
     format = '%%% insert {} %%%'
-    regex = re.compile(r"%%% start ([\S]) %%%\n([\s\S]+)\n[\s]+%%% end \1 %%%")
+    regex = re.compile(r"### start ([\S]) ###\n([\s\S]+)\n[\s]+### end \1 ###")
     with open(pyfilepath) as f:
          content = f.read()
          starter = content

@@ -45,15 +45,15 @@ For code, *just add one solution file*. This file must have the same name as you
 def extended_gcd(x, y):
     print('x:', x, 'y:', y)
     if y == 0:
-        %%% start a %%%
+        ### start a ###
         return (x, 1, 0)
-        %%% end a %%%
+        ### end a ###
     else:
-        %%% start b %%%
+        ### start b ###
         d, a, b = extended_gcd(y, x % y)
         print('d:', d, 'a:', a, 'b:', b)
         return (d, b, a - (x // y)*b)
-        %%% end b %%%
+        ### end b ###
 ```
 
 In your `.tex` file, insert the relevant code in your solutions, using the `%%% insert [name] %%%` syntax. Here, we insert both solution parts `a` and `b`. These names have no significance and can be arbitrary.
